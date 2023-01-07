@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:15:12 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/07 22:33:33 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/07 23:11:53 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include "ft_printf/ft_printf.h"
 # include <unistd.h>
 # include <signal.h>
-#include <stdlib.h>
+# include <stdlib.h>
 
 #endif

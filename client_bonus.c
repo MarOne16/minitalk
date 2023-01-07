@@ -6,12 +6,13 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:14:51 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/07 22:37:34 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/07 23:14:27 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
+int	g_counter;
 
 int	ft_atoi(const char *str)
 {
@@ -39,15 +40,13 @@ int	ft_atoi(const char *str)
 	return (z * x);
 }
 
-int counter;
-
 void	bitcounter(int signal)
 {
 	if (signal == SIGUSR1)
-		counter++;
+		g_counter++;
 }
 
-void  handle(pid_t pid, int c,int digits)
+void	handle(pid_t pid, int c, int digits)
 {
 	char	*binary;
 	int		index;
@@ -70,19 +69,23 @@ void  handle(pid_t pid, int c,int digits)
 	}
 	free(binary);
 }
-int main(int argc, char* argv[]) {
-  pid_t pid = ft_atoi(argv[1]);
-  int i = 0;
-  if (argc == 3)
-  {
-  while (argv[2][i])
-  {
-	signal(SIGUSR1,&bitcounter);
-    handle(pid,argv[2][i],8);
-    i++;
-  }
-    ft_printf("total bayts : %d",counter);
-	
-  }
-  return 0;
+
+int	main(int argc, char *argv[])
+{
+	pid_t	pid;
+	int		i;
+
+	pid = ft_atoi(argv[1]);
+	i = 0;
+	if (argc == 3)
+	{
+		while (argv[2][i])
+		{
+			signal(SIGUSR1, &bitcounter);
+			handle(pid, argv[2][i], 8);
+			i++;
+		}
+		ft_printf("total bytes: %d", g_counter);
+	}
+	return (0);
 }

@@ -1,3 +1,7 @@
+CC = cc
+
+CFLAGS = -Wall -Werror -Wextra
+
 SERVER = server
 
 NAME = client
@@ -21,29 +25,23 @@ BSSERVER = server_bonus.c
 SRC =  ft_printf/ft_printf.c ft_printf/ft_printchar.c ft_printf/ft_puthexa.c ft_printf/ft_puthexam.c ft_printf/ft_putnbr.c ft_printf/ft_putnbrun.c\
 		ft_printf/ft_putpoint.c ft_printf/ft_putstr.c 
 
-CC = cc
-
-CFLAGS = -Wall -Werror -Wextra
-
 all: $(NAME) $(SERVER)
-	
-$(SERVER): $(SSERVER) $(SRC) $(HEADER)
-	@$(CC) $(CFLAGS) $(SSERVER) $(SRC) -o server
-	
+
 $(NAME): $(SCLIENT) $(SRC) $(HEADER)
-	@$(CC) $(CFLAGS) $(SCLIENT) $(SRC) -o client
+	@$(CC) $(CFLAGS) $(SCLIENT) $(SRC) -o $@
+
+$(SERVER): $(SSERVER) $(SRC) $(HEADER)
+	@$(CC) $(CFLAGS) $(SSERVER) $(SRC) -o $@
 
 bonus: $(BNAME) $(BSERVER)
 
 $(BSERVER): $(BSSERVER) $(SRC) $(BHEADER)
-	@$(CC) $(CFLAGS) $(BSSERVER) $(SRC) -o server_bonus
+	@$(CC) $(CFLAGS) $(BSSERVER) $(SRC) -o $@
 
 $(BNAME): $(BSCLIENT) $(SRC) $(BHEADER)
-	@$(CC) $(CFLAGS) $(BSCLIENT) $(SRC) -o client_bonus
+	@$(CC) $(CFLAGS) $(BSCLIENT) $(SRC) -o $@
 
 clean:
 	rm -f $(NAME) $(SERVER) $(BNAME) $(BSERVER)
 
-fclean: clean
-
-re: fclean 
+re: clean all

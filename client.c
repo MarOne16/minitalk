@@ -6,7 +6,7 @@
 /*   By: mqaos <mqaos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:07:56 by mqaos             #+#    #+#             */
-/*   Updated: 2023/01/07 23:13:38 by mqaos            ###   ########.fr       */
+/*   Updated: 2023/01/10 18:05:32 by mqaos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,20 @@ int	main(int argc, char *argv[])
 	pid_t	pid;
 	int		i;
 
-	pid = ft_atoi(argv[1]);
 	i = 0;
 	if (argc == 3)
 	{
-		while (argv[2][i])
+		pid = ft_atoi(argv[1]);
+		if (pid > 1)
 		{
-			signal(SIGUSR1, &bitcounter);
-			handle(pid, argv[2][i], 8);
-			i++;
+			while (argv[2][i])
+			{
+				signal(SIGUSR1, &bitcounter);
+				handle(pid, argv[2][i], 8);
+				i++;
+			}
+			ft_printf("total bytes: %d", g_counter);
 		}
-		ft_printf("total bytes: %d", g_counter);
 	}
 	return (0);
 }
